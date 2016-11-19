@@ -1,6 +1,6 @@
 import pygame
 import settings
-import cell
+# import cell
 from random import randint
 
 class Node:
@@ -41,6 +41,8 @@ class Node:
         room = Room(random_columns, random_rows, self.position + (random_position, random_position), self)
         return room
 
+    def connect_children(self):
+        pass
 
 
 class Room:
@@ -55,3 +57,12 @@ class Room:
 
     def draw(self):
         pass
+
+
+class Hallway:
+    def __init__(self, room_one, room_two):
+        self.length = room_one.height
+        self.width = 2 * settings.TILESIZE
+        self.position = pygame.math.Vector2(room_one.columns / 2, room_one.position.y + room_one.height)
+        self.rect = pygame.Rect(self.position, (self.width, self.height))
+
